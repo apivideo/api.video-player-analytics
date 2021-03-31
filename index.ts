@@ -18,7 +18,7 @@ type WithMediaUrl = {
 } & CommonOptions;
 
 export type CommonOptions = {
-    userMetadata?: { [name: string]: string }[];
+    metadata?: { [name: string]: string };
     sequence?: {
         start: number;
         end?: number;
@@ -202,12 +202,16 @@ export class PlayerAnalytics {
     }
 
     private buildPingPayload(): PlaybackPingMessage {
+        const metadataAsList: { [name: string]: string }[] = !!this.options.metadata
+            ? Object.keys(this.options.metadata).map(k => ({[k]: (this.options.metadata || {})[k]}))
+            : [];
+
         return {
             emitted_at: new Date().toISOString(),
             session: {
                 loaded_at: this.loadedAt.toISOString(),
                 referrer: document.referrer,
-                metadata: this.options.userMetadata || [],
+                metadata: metadataAsList,
                 ...(this.sessionId && { session_id: this.sessionId }),
                 ...(this.options.videoType === 'live' && { live_stream_id: this.options.videoId }),
                 ...(this.options.videoType === 'vod' && { video_id: this.options.videoId }),

@@ -1,6 +1,6 @@
 {
   "name": "@api.video/player-analytics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "api.video player analytics module",
   "repository": {
     "type": "git",

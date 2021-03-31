@@ -110,6 +110,22 @@ describe('player analytics service', () => {
             mediaUrl: 'https://mydomain/video.m3u8',
         })).toThrowError("The media url doesn't look like an api.video URL.");
     });
+
+    test('user metadata are properly transformed', async () => {
+        const playerAnalytics = new PlayerAnalyticsTest({
+            mediaUrl: 'https://live.api.video/li6Anin2CG1eWirOCBnvYDzI.m3u8',
+            metadata: {
+                key1: 'value1',
+                key2: 'value2'
+            }
+        });
+
+        await playerAnalytics.play();
+        await playerAnalytics.pause();
+
+        expect(playerAnalytics.sentPings).toHaveLength(1);
+        expect(JSON.parse(playerAnalytics.sentPings[0].payload.body).session.metadata).toEqual([{ key1: 'value1' }, { key2: 'value2' }]);
+    });
 });
 
 class PlayerAnalyticsTest extends PlayerAnalytics {
