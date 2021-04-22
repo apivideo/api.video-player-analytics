@@ -103,9 +103,13 @@ export class PlayerAnalytics {
         this.pingsSendPaused = true;
         this.sessionIdStorageKey = PlayerAnalytics.generateSessionIdStorageKey(this.options.videoId);
 
-        const sessionIdFromLocalStorage = window.sessionStorage.getItem(this.sessionIdStorageKey);
-        if (sessionIdFromLocalStorage) {
-            this.setSessionId(sessionIdFromLocalStorage);
+        try {
+            const sessionIdFromLocalStorage = window.sessionStorage.getItem(this.sessionIdStorageKey);
+            if (sessionIdFromLocalStorage) {
+                this.setSessionId(sessionIdFromLocalStorage);
+            }
+        } catch {
+            // nothing
         }
 
         this.pingInterval = window.setInterval(() => {
@@ -203,7 +207,7 @@ export class PlayerAnalytics {
 
     private buildPingPayload(): PlaybackPingMessage {
         const metadataAsList: { [name: string]: string }[] = !!this.options.metadata
-            ? Object.keys(this.options.metadata).map(k => ({[k]: (this.options.metadata || {})[k]}))
+            ? Object.keys(this.options.metadata).map(k => ({ [k]: (this.options.metadata || {})[k] }))
             : [];
 
         return {

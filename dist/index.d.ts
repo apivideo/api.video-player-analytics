@@ -10,9 +10,9 @@ declare type WithMediaUrl = {
     mediaUrl: string;
 } & CommonOptions;
 export declare type CommonOptions = {
-    userMetadata?: {
+    metadata?: {
         [name: string]: string;
-    }[];
+    };
     sequence?: {
         start: number;
         end?: number;
