@@ -24,6 +24,7 @@ export type CommonOptions = {
         end?: number;
     };
     onSessionIdReceived?: (sessionId: string) => void;
+    onPing?: (ping: PlaybackPingMessage) => void;
 }
 
 type PingEvent = {
@@ -237,6 +238,10 @@ export class PlayerAnalytics {
             },
             body: JSON.stringify(payload)
         });
+
+        if(this.options.onPing) {
+            this.options.onPing(payload);
+        }
 
         return fetchPromise
             .then(response => response.json())

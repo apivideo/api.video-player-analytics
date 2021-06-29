@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.3] - 2012-05-29
+- Add onPing option
+
 ## [1.0.2] - 2021-04-22
 - Catch error when using sessionStorage
 

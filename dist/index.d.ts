@@ -18,6 +18,7 @@ export declare type CommonOptions = {
         end?: number;
     };
     onSessionIdReceived?: (sessionId: string) => void;
+    onPing?: (ping: PlaybackPingMessage) => void;
 };
 declare type PingEvent = {
     emitted_at: string;
@@ -26,7 +27,27 @@ declare type PingEvent = {
     from?: number;
     to?: number;
 };
+declare type PlaybackPingMessage = {
+    emitted_at: string;
+    session: {
+        loaded_at: string;
+        video_id?: string;
+        live_stream_id?: string;
+        referrer: string;
+        metadata?: {
+            [name: string]: string;
+        }[];
+        session_id?: string;
+        navigator?: NavigatorSettings;
+    };
+    events: PingEvent[];
+};
 declare type EventName = 'play' | 'resume' | 'ready' | 'pause' | 'end' | 'seek.forward' | 'seek.backward';
+declare type NavigatorSettings = {
+    user_agent: string;
+    connection: any;
+    timing?: any;
+};
 export declare const isWithMediaUrl: (options: PlayerAnalyticsOptions) => options is WithMediaUrl;
 export declare const isWithCustomOptions: (options: PlayerAnalyticsOptions) => options is WithCustomOptions;
 export declare class PlayerAnalytics {
