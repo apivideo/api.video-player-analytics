@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.4] - 2012-06-29
+- Remove `?t=x` query-string param when posting analytics requests
+
 ## [1.0.3] - 2012-05-29
 - Add onPing option
 
