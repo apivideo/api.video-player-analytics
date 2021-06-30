@@ -231,7 +231,7 @@ export class PlayerAnalytics {
         }
         this.alreadySentEvents = this.eventsStack.length;
 
-        const fetchPromise = (this.fetchFunc || fetch)(this.options.pingUrl + '?t=' + new Date().getTime(), {
+        const fetchPromise = (this.fetchFunc || fetch)(this.options.pingUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
