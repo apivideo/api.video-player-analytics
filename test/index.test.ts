@@ -32,7 +32,10 @@ describe('player analytics service', () => {
         const playerAnalytics = new PlayerAnalyticsTest({
             pingUrl: 'https://aa',
             videoId: 'videoId',
-            videoType: 'vod'
+            videoType: 'vod',
+            onPing: (a) => {
+                throw new Error('');
+            }
         });
 
         await playerAnalytics.play();

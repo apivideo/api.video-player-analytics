@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.6] - 2012-07-06
+- Call onPing() & onSessionIdReceived() callbacks asynchronously
+  
 ## [1.0.5] - 2012-06-30
 - Add dist/index.js
 
