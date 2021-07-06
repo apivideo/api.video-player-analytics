@@ -239,9 +239,7 @@ export class PlayerAnalytics {
             body: JSON.stringify(payload)
         });
 
-        if(this.options.onPing) {
-            this.options.onPing(payload);
-        }
+        setTimeout(() => this.options.onPing && this.options.onPing(payload), 0);
 
         return fetchPromise
             .then(response => response.json())
@@ -259,9 +257,7 @@ export class PlayerAnalytics {
 
         this.sessionId = sessionId
 
-        if (this.options.onSessionIdReceived) {
-            this.options.onSessionIdReceived(sessionId);
-        }
+        setTimeout(() => this.options.onSessionIdReceived && this.options.onSessionIdReceived(sessionId), 0);
 
         try {
             window.sessionStorage.setItem(this.sessionIdStorageKey, this.sessionId);
