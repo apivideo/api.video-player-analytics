@@ -233,9 +233,6 @@ export class PlayerAnalytics {
 
         const fetchPromise = (this.fetchFunc || fetch)(this.options.pingUrl, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify(payload)
         });
 
