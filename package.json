@@ -4,7 +4,7 @@
   "description": "api.video player analytics module",
   "repository": {
     "type": "git",
-    "url": "git@github.com:apivideo/player-analytics.git"
+    "url": "git@github.com:apivideo/api.video-player-analytics.git"
   },
   "author": "api.video <ecosystem-team@api.video> (https://api.video/)",
   "license": "MIT",
