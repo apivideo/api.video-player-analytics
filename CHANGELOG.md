@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.7] - 2012-11-22
+- Remove ping Content-Type header
+
 ## [1.0.6] - 2012-07-06
 - Call onPing() & onSessionIdReceived() callbacks asynchronously
   
