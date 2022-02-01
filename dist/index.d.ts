@@ -62,6 +62,7 @@ export declare class PlayerAnalytics {
     private pingsSendPaused;
     private pingInterval;
     constructor(options: WithCustomOptions | WithMediaUrl);
+    static parseMediaUrl(mediaUrl: string): CustomOptions;
     protected static generateSessionIdStorageKey(videoId: string): string;
     play(): Promise<void>;
     resume(): Promise<void>;
@@ -72,7 +73,6 @@ export declare class PlayerAnalytics {
     destroy(): Promise<void>;
     updateTime(time: number): Promise<void>;
     pushEvent(event: PingEvent): void;
-    protected parseMediaUrl(mediaUrl: string): CustomOptions;
     private pushRegularEvent;
     private buildPingPayload;
     private sendPing;
