@@ -95,7 +95,7 @@ export class PlayerAnalytics {
         if (isWithMediaUrl(options)) {
             this.options = {
                 ...options,
-                ...this.parseMediaUrl(options.mediaUrl),
+                ...PlayerAnalytics.parseMediaUrl(options.mediaUrl),
             }
         } else {
             this.options = options;
@@ -118,6 +118,28 @@ export class PlayerAnalytics {
                 this.sendPing(this.buildPingPayload());
             }
         }, PLAYBACK_PING_DELAY);
+    }
+
+    public static parseMediaUrl(mediaUrl: string): CustomOptions {
+        const re = /https:\/.*[\/](vod|live)([\/]|[\/\.][^\/]*[\/])([^\/^\.]*)[\/\.].*/gm;
+        const parsed = re.exec(mediaUrl);
+
+        if (!parsed || parsed.length < 3 || !parsed[1] || !parsed[3]) {
+            throw new Error("The media url doesn't look like an api.video URL.");
+        }
+        if (['vod', 'live'].indexOf(parsed[1]) === -1) {
+            throw new Error("Can't termine if media URL is vod or live.");
+        }
+
+        const videoType = parsed[1] as 'vod' | 'live';
+        const videoId = parsed[3];
+
+        return {
+            pingUrl: 'https://collector.api.video/${type}'.replace('${type}', videoType),
+            videoId,
+            videoType,
+        }
+
     }
 
     protected static generateSessionIdStorageKey(videoId: string) {
@@ -173,28 +195,6 @@ export class PlayerAnalytics {
 
     public pushEvent(event: PingEvent) {
         this.eventsStack.push(event);
-    }
-
-    protected parseMediaUrl(mediaUrl: string): CustomOptions {
-        const re = /https:\/.*[\/](vod|live)([\/]|[\/\.][^\/]*[\/])([^\/^\.]*)[\/\.].*/gm;
-        const parsed = re.exec(mediaUrl);
-
-        if (!parsed || parsed.length < 3 || !parsed[1] || !parsed[3]) {
-            throw new Error("The media url doesn't look like an api.video URL.");
-        }
-        if (['vod', 'live'].indexOf(parsed[1]) === -1) {
-            throw new Error("Can't termine if media URL is vod or live.");
-        }
-
-        const videoType = parsed[1] as 'vod' | 'live';
-        const videoId = parsed[3];
-
-        return {
-            pingUrl: 'https://collector.api.video/${type}'.replace('${type}', videoType),
-            videoId,
-            videoType,
-        }
-
     }
 
     private pushRegularEvent(eventName: Exclude<EventName, 'seek.forward' | 'seek.backward'>): Promise<void> {

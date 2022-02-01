@@ -1,19 +1,22 @@
 # Changelog
 All changes to this project will be documented in this file.
 
-## [1.0.7] - 2012-11-22
+## [1.0.8] - 2022-02-01
+- parseMediaUrl() is now public static
+
+## [1.0.7] - 2021-11-22
 - Remove ping Content-Type header
 
-## [1.0.6] - 2012-07-06
+## [1.0.6] - 2021-07-06
 - Call onPing() & onSessionIdReceived() callbacks asynchronously
   
-## [1.0.5] - 2012-06-30
+## [1.0.5] - 2021-06-30
 - Add dist/index.js
 
-## [1.0.4] - 2012-06-29
+## [1.0.4] - 2021-06-29
 - Remove `?t=x` query-string param when posting analytics requests
 
-## [1.0.3] - 2012-05-29
+## [1.0.3] - 2021-05-29
 - Add onPing option
 
 ## [1.0.2] - 2021-04-22
