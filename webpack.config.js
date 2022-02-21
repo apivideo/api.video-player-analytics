@@ -17,6 +17,9 @@ module.exports = {
     output: {
         libraryTarget: 'umd',
         filename: 'index.js',
-        globalObject: 'this'
+        globalObject: 'this',
+        environment: {
+            arrowFunction: false
+        }
     }
 };
