@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.9] - 2022-02-21
+- Disallow arrow functions in webpack configuration
+  
 ## [1.0.8] - 2022-02-01
 - parseMediaUrl() is now public static
 
