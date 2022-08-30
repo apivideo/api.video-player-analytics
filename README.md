@@ -41,6 +41,8 @@ If you use one of the following video player, you should rather use the associat
 | hls.js   | [@api.video/api.video-hlsjs-analytics](https://github.com/apivideo/api.video-hlsjs-analytics)     |
 
 
+This module is compatible with React Native.
+
 # Getting started
 
 ## Installation 
