@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.10] - 2022-08-30
+- React Native compatibility
+  
 ## [1.0.9] - 2022-02-21
 - Disallow arrow functions in webpack configuration
   

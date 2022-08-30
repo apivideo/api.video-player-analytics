@@ -215,7 +215,7 @@ export class PlayerAnalytics {
             emitted_at: new Date().toISOString(),
             session: {
                 loaded_at: this.loadedAt.toISOString(),
-                referrer: document.referrer,
+                referrer: typeof(document) !== 'undefined' ? document.referrer : '',
                 metadata: metadataAsList,
                 ...(this.sessionId && { session_id: this.sessionId }),
                 ...(this.options.videoType === 'live' && { live_stream_id: this.options.videoId }),
