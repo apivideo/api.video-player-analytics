@@ -121,18 +121,19 @@ export class PlayerAnalytics {
     }
 
     public static parseMediaUrl(mediaUrl: string): CustomOptions {
-        const re = /https:\/.*[\/](vod|live)([\/]|[\/\.][^\/]*[\/])([^\/^\.]*)[\/\.].*/gm;
+        const re = /https:\/.*[\/](?<type>vod|live).*\/(?<id>(vi|li)[^\/^\.]*)[\/\.].*/gm;
         const parsed = re.exec(mediaUrl);
 
-        if (!parsed || parsed.length < 3 || !parsed[1] || !parsed[3]) {
+
+        if (!parsed || !parsed.groups?.id || !parsed.groups?.type) {
             throw new Error("The media url doesn't look like an api.video URL.");
         }
-        if (['vod', 'live'].indexOf(parsed[1]) === -1) {
+        if (['vod', 'live'].indexOf(parsed.groups?.type) === -1) {
             throw new Error("Can't termine if media URL is vod or live.");
         }
 
-        const videoType = parsed[1] as 'vod' | 'live';
-        const videoId = parsed[3];
+        const videoType = parsed.groups?.type as 'vod' | 'live';
+        const videoId = parsed.groups?.id;
 
         return {
             pingUrl: 'https://collector.api.video/${type}'.replace('${type}', videoType),

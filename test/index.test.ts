@@ -84,34 +84,30 @@ describe('player analytics service', () => {
         expect(JSON.parse(playerAnalytics.sentPings[0].payload.body).events[1].type).toEqual('pause');
     });
 
-    test('parse valid vod media url', () => {
-        const playerAnalytics = new PlayerAnalyticsTest({
-            mediaUrl: 'https://cdn.api.video/vod/vi5oDagRVJBSKHxSiPux5rYD/hls/manifest.m3u8',
-        });
-
-        expect(playerAnalytics.getOptions()).toMatchObject({
-            videoId: 'vi5oDagRVJBSKHxSiPux5rYD',
-            videoType: 'vod',
-            pingUrl: 'https://collector.api.video/vod'
-        });
-    });
-
     test('parse valid live media url', () => {
-        const playerAnalytics = new PlayerAnalyticsTest({
-            mediaUrl: 'https://live.api.video/li6Anin2CG1eWirOCBnvYDzI.m3u8',
-        });
+        const testAssets = [
+            { type: 'vod', id: 'vi5oNqxkifcXkT4auGNsvgZB', url: 'https://vod.api.video/vod/vi5oNqxkifcXkT4auGNsvgZB/hls/manifest.m3u8' },
+            { type: 'vod', id: 'vi5oNqxkifcXkT4auGNsvgZB', url: 'https://vod.api.video/vod/vi5oNqxkifcXkT4auGNsvgZB/token/PRIVATE_TOKEN/hls/manifest.m3u8' },
+            { type: 'live', id: 'li77ACbZjzEJgmr8d0tm4xFt', url: 'https://live.api.video/li77ACbZjzEJgmr8d0tm4xFt.m3u8' },
+            { type: 'live', id: 'li77ACbZjzEJgmr8d0tm4xFt', url: 'https://live.api.video/private/PRIVATE_TOKEN/li77ACbZjzEJgmr8d0tm4xFt.m3u8' },
+        ];
 
-        expect(playerAnalytics.getOptions()).toMatchObject({
-            videoId: 'li6Anin2CG1eWirOCBnvYDzI',
-            videoType: 'live',
-            pingUrl: 'https://collector.api.video/live'
-        });
+        for (const testAsset of testAssets) {
+            const playerAnalytics = new PlayerAnalyticsTest({
+                mediaUrl: testAsset.url,
+            });
+            expect(playerAnalytics.getOptions()).toMatchObject({
+                videoId: testAsset.id,
+                videoType: testAsset.type,
+                pingUrl: 'https://collector.api.video/' + testAsset.type
+            });
+        }
     });
 
     test('parse invalid  media url', () => {
         expect(() => new PlayerAnalyticsTest({
             mediaUrl: 'https://mydomain/video.m3u8',
-        })).toThrowError("The media url doesn't look like an api.video URL.");
+        })).toThrowError('The media url doesn\'t look like an api.video URL.');
     });
 
     test('user metadata are properly transformed', async () => {
