@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        "analytics-module": ['core-js/stable/promise', 'url-polyfill', './index.ts']
+        "analytics-module": ['core-js/stable/promise', 'url-polyfill', './src/']
     },
     module: {
         rules: [
