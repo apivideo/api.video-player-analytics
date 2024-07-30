@@ -18,14 +18,8 @@
 - [Documentation](#documentation)
   - [Instantiation options](#instantiation-options)
   - [Module methods](#module-methods)
-      - [`play(): Promise<void>`](#play-promisevoid)
-      - [`resume(): Promise<void>`](#resume-promisevoid)
-      - [`ready(): Promise<void>`](#ready-promisevoid)
-      - [`end(): Promise<void>`](#end-promisevoid)
-      - [`seek(from: number, to: number): Promise<void>`](#seekfrom-number-to-number-promisevoid)
-      - [`pause(): Promise<void>`](#pause-promisevoid)
-      - [`destroy(): Promise<void>`](#destroy-promisevoid)
-      - [`updateTime(time: number): Promise<void>`](#updatetimetime-number-promisevoid)
+    - [**`ovbserveMedia(media: HTMLVideoElement)`**](#ovbservemediamedia-htmlvideoelement)
+    - [**`dispose()`**](#dispose)
 
 
 <!--</documentation_excluded>-->
@@ -137,42 +131,12 @@ Once the module is instantiated, the following methods have to be called to moni
 
 ### Module methods
 
-**`play(): Promise<void>`**
+#### **`ovbserveMedia(media: HTMLVideoElement)`**
 
-method to call when the video starts playing for the first time (in the case of a resume after paused, use `resume()`)
-
-
-**`resume(): Promise<void>`**
-
-method to call when the video playback is resumed after a pause
+this method attaches event listeners to the provided HTMLVideoElement to track and analyze media playback events. No data will be collected before this method is called. 
 
 
-**`ready(): Promise<void>`**
+#### **`dispose()`**
 
-method to call once the player is ready to play the media
-
-
-**`end(): Promise<void>`**
-
-method to call when the video is ended
-
-
-**`seek(from: number, to: number): Promise<void>`**
-
-method to call when a seek event occurs, the `from` and `to` parameters are mandatory and should contains the seek start & end times in seconds
-
-
-**`pause(): Promise<void>`**
-
-method to call when the video is paused
-
-
-**`destroy(): Promise<void>`**
-
-method to call when the video player is disposed (eg. when the use closes the navigation tab)
-
-
-**`updateTime(time: number): Promise<void>`**
-
-method to call each time the playback time changes (it should be called often, the accuracy of the collected data depends on it)
+his method removes all event listeners attached by `observeMedia` and cleans up any resources used for tracking media playback events.
 

@@ -1,6 +1,6 @@
 {
   "name": "@api.video/player-analytics",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "api.video player analytics module",
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@types/jest": "^26.0.21",
     "@types/jsdom": "^16.2.7",
-    "@types/md5": "^2.3.0",
     "@types/whatwg-fetch": "0.0.33",
     "jest": "^26.6.3",
     "jsdom": "^16.5.1",
@@ -39,7 +38,6 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "md5": "^2.3.0",
     "url-polyfill": "^1.1.12",
     "whatwg-fetch": "^3.6.2"
   }

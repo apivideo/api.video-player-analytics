@@ -1,7 +1,7 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
-    roots: ["./"],
+    roots: ["./src"],
     transform: {
       '^.+\\.ts$': 'ts-jest',
     },

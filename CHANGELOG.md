@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [2.0.0] - 2024-07-31
+- Switch to api.video analytics v2.0
+  
 ## [1.0.10] - 2022-08-30
 - React Native compatibility
   
